@@ -19,6 +19,11 @@ repositories {
 
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
+
+    compileOnly "org.projectlombok:lombok:1.18.32"
+    annotationProcessor "org.projectlombok:lombok:1.18.32"
+
+    implementation "net.kyori:adventure-text-minimessage:4.17.0"
 }
 
 def targetJavaVersion = 21
