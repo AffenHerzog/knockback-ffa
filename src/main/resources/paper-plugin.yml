@@ -1,0 +1,4 @@
+name: KnockbackFFA
+version: '${version}'
+main: de.affenherzog.knockbackff.Kffa
+api-version: '1.21'
