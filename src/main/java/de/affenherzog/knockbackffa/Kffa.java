@@ -1,4 +1,4 @@
-package de.affenherzog.knockbackff;
+package de.affenherzog.knockbackffa;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

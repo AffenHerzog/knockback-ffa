@@ -1,4 +1,4 @@
 name: KnockbackFFA
 version: '${version}'
-main: de.affenherzog.knockbackff.Kffa
+main: de.affenherzog.knockbackffa.Kffa
 api-version: '1.21'
