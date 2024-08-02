@@ -3,4 +3,4 @@ version: '${version}'
 main: de.affenherzog.knockbackffa.Kffa
 api-version: '1.21'
 commands:
-  skip:
+
