@@ -35,9 +35,15 @@ public record Map(
     }
   }
 
+  private static final int UNLOAD_DELAY_TICS = 40;
+
   public void unloadWorld() {
     if (Bukkit.getWorld(this.name) != null) {
-      Bukkit.unloadWorld(this.name, false);
+      Kffa.getInstance().getScheduler().runTaskLater(Kffa.getInstance(), () -> {
+        if (!Kffa.getInstance().getGame().getMap().equals(this)) {
+          Bukkit.unloadWorld(this.name, false);
+        }
+      }, UNLOAD_DELAY_TICS);
     }
   }
 }
