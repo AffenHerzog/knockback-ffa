@@ -5,14 +5,22 @@ import de.affenherzog.knockbackffa.map.Map;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class Game {
 
   @Getter
   private Map map;
 
+  private Location spawnLocation;
+
   public Game() {
     mapChange();
+  }
+
+  public void teleport(@NotNull Player player) {
+    player.teleportAsync(this.spawnLocation);
   }
 
   public void mapChange() {
@@ -23,19 +31,21 @@ public class Game {
 
     this.map = Kffa.getInstance().getMapContainer().getRandomMap(map);
     map.loadWorld();
+
+    this.spawnLocation = generateLocation();
     teleportPlayer();
   }
 
-  private void teleportPlayer() {
-    final Location location = new Location(
+  private Location generateLocation() {
+    return new Location(
         Bukkit.getWorld(map.name()),
         map.spawnLocation().x(),
         map.spawnLocation().y(),
         map.spawnLocation().z());
+  }
 
-    Bukkit.getOnlinePlayers().forEach(player -> {
-      player.teleportAsync(location);
-    });
+  private void teleportPlayer() {
+    Kffa.getInstance().getPlayerHashMap().keySet().forEach(this::teleport);
   }
 
 }
