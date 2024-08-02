@@ -20,14 +20,14 @@ public class Game {
   }
 
   private void teleportPlayer() {
+    final Location location = new Location(
+        Bukkit.getWorld(map.name()),
+        map.spawnLocation().x(),
+        map.spawnLocation().y(),
+        map.spawnLocation().z());
+
     Bukkit.getOnlinePlayers().forEach(player -> {
-      player.teleport(
-          new Location(
-              Bukkit.getWorld(map.name()),
-              map.spawnLocation().x(),
-              map.spawnLocation().y(),
-              map.spawnLocation().z()
-          ));
+      player.teleportAsync(location);
     });
   }
 
