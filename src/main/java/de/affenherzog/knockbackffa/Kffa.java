@@ -2,6 +2,7 @@ package de.affenherzog.knockbackffa;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.affenherzog.knockbackffa.command.MapSkipCommand;
+import de.affenherzog.knockbackffa.database.DBConnector;
 import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.listener.PlayerJoinListener;
 import de.affenherzog.knockbackffa.listener.PlayerQuitListener;
@@ -44,6 +45,11 @@ public final class Kffa extends JavaPlugin {
   @Override
   public void onEnable() {
     instance = this;
+
+    getConfig().options().copyDefaults(true);
+    saveConfig();
+
+    DBConnector.getDataSource();
 
     copyMapsFile();
 
