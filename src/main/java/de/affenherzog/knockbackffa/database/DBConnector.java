@@ -7,24 +7,23 @@ import de.chojo.sadu.mapper.RowMapperRegistry;
 import de.chojo.sadu.mariadb.databases.MariaDb;
 import de.chojo.sadu.mariadb.mapper.MariaDbMapper;
 import de.chojo.sadu.queries.configuration.QueryConfiguration;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public final class DBConnector {
 
-  private static HikariDataSource DATA_SOURCE;
+  @Getter
+  private final static DBConnector INSTANCE = new DBConnector();
 
-  public static HikariDataSource getDataSource() {
-    if (DATA_SOURCE == null) {
-      return new HikariDataSource();
-    }
-    return DATA_SOURCE;
-  }
+  @Getter
+  private final HikariDataSource dataSource;
+
 
   private DBConnector() {
     final FileConfiguration config = Kffa.getInstance().getConfig();
 
-    DATA_SOURCE = DataSourceCreator.create(MariaDb.get())
+    this.dataSource = DataSourceCreator.create(MariaDb.get())
         .configure(dbConfig -> dbConfig.host(config.getString("database.host"))
             .port(config.getInt("database.port"))
             .user(config.getString("database.user"))
@@ -36,9 +35,9 @@ public final class DBConnector {
         .withMinimumIdle(1)
         .build();
 
-
-    QueryConfiguration queryConfiguration = QueryConfiguration.builder(DATA_SOURCE)
-        .setExceptionHandler(err -> Bukkit.getLogger().severe("An error occured during a database request" + err))
+    QueryConfiguration queryConfiguration = QueryConfiguration.builder(dataSource)
+        .setExceptionHandler(
+            err -> Bukkit.getLogger().severe("An error occured during a database request" + err))
         .setThrowExceptions(true)
         .setAtomic(true)
         .setRowMapperRegistry(new RowMapperRegistry().register(MariaDbMapper.getDefaultMapper()))

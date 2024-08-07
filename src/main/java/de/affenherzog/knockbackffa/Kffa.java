@@ -13,7 +13,6 @@ import io.papermc.paper.plugin.lifecycle.event.LifecycleEventManager;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -49,7 +48,7 @@ public final class Kffa extends JavaPlugin {
     getConfig().options().copyDefaults(true);
     saveConfig();
 
-    DBConnector.getDataSource();
+    DBConnector.getINSTANCE();
 
     copyMapsFile();
 
