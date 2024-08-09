@@ -37,7 +37,7 @@ public final class DBConnector {
 
     QueryConfiguration queryConfiguration = QueryConfiguration.builder(dataSource)
         .setExceptionHandler(
-            err -> Bukkit.getLogger().severe("An error occured during a database request" + err))
+            err -> Kffa.getInstance().getLogger().severe("An error occured during a database request" + err))
         .setThrowExceptions(true)
         .setAtomic(true)
         .setRowMapperRegistry(new RowMapperRegistry().register(MariaDbMapper.getDefaultMapper()))
