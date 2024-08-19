@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.jetbrains.annotations.NotNull;
 
 public class PlayerDamageListener implements Listener {
@@ -16,7 +17,11 @@ public class PlayerDamageListener implements Listener {
       return;
     }
 
-    event.setCancelled(true);
+    if (event.getCause().equals(DamageCause.FALL)) {
+      event.setCancelled(true);
+    }
+
+    event.setDamage(0);
 
   }
 
