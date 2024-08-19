@@ -2,16 +2,39 @@ package de.affenherzog.knockbackffa.player;
 
 import de.affenherzog.knockbackffa.Kffa;
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 public class PlayerStats {
 
   public static final PlayerStats FIRST_JOIN_PLAYER_STATS = fetchFirstJoinPlayerStats();
 
-  @Getter @Setter
   private int kills, deaths, money, rankPoints;
+
+  public void increaseKills() {
+    this.kills = kills ++;
+  }
+
+  public void increaseDeaths() {
+    this.deaths = deaths ++;
+  }
+
+  public boolean updateMoney(int money) {
+    if (this.money + money > 0) {
+      this.money = this.money + money;
+      return true;
+    }
+    return false;
+  }
+
+  public void updateRankPoints(int rankPoints) {
+    this.rankPoints = this.rankPoints + rankPoints;
+
+    if (this.rankPoints < 0) {
+      this.rankPoints = 0;
+    }
+  }
 
   private static @NotNull PlayerStats fetchFirstJoinPlayerStats() {
     final FileConfiguration config = Kffa.getInstance().getConfig();
