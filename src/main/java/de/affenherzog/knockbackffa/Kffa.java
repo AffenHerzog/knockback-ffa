@@ -7,6 +7,7 @@ import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.listener.PlayerDamageListener;
 import de.affenherzog.knockbackffa.listener.PlayerJoinListener;
 import de.affenherzog.knockbackffa.listener.PlayerQuitListener;
+import de.affenherzog.knockbackffa.listener.WeatherChangeListener;
 import de.affenherzog.knockbackffa.map.MapContainer;
 import de.affenherzog.knockbackffa.player.KffaPlayer;
 import io.papermc.paper.command.brigadier.Commands;
@@ -102,6 +103,7 @@ public final class Kffa extends JavaPlugin {
     pluginManager.registerEvents(new PlayerJoinListener(), this);
     pluginManager.registerEvents(new PlayerQuitListener(), this);
     pluginManager.registerEvents(new PlayerDamageListener(), this);
+    pluginManager.registerEvents(new WeatherChangeListener(), this);
   }
 
   @Override
