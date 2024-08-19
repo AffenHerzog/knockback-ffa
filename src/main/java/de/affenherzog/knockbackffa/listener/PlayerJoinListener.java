@@ -1,8 +1,9 @@
 package de.affenherzog.knockbackffa.listener;
 
 import de.affenherzog.knockbackffa.Kffa;
-import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.player.KffaPlayer;
+import de.affenherzog.knockbackffa.player.PlayerRepositoryImpl;
+import de.affenherzog.knockbackffa.player.PlayerStats;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,10 +15,23 @@ public class PlayerJoinListener implements Listener {
   @EventHandler
   public void onPlayerJoin(@NotNull PlayerJoinEvent event) {
     final Player player = event.getPlayer();
-    final Game game = Kffa.getInstance().getGame();
 
-    Kffa.getInstance().getPlayerHashMap().put(player, new KffaPlayer(player, game));
+    PlayerRepositoryImpl.getINSTANCE().findByUUID(player.getUniqueId()).thenAccept(playerStats -> {
+
+      final KffaPlayer kffaPlayer = playerStats
+          .map(stats -> new KffaPlayer(player, stats))
+          .orElseGet(() -> registerPlayer(player));
+
+      Kffa.getInstance().getPlayerHashMap().put(player, kffaPlayer);
+    });
+
     Kffa.getInstance().getGame().teleport(player);
+  }
+
+  private @NotNull KffaPlayer registerPlayer(@NotNull Player player) {
+    final KffaPlayer kffaPlayer = new KffaPlayer(player, PlayerStats.FIRST_JOIN_PLAYER_STATS);
+    PlayerRepositoryImpl.getINSTANCE().insert(kffaPlayer);
+    return kffaPlayer;
   }
 
 
