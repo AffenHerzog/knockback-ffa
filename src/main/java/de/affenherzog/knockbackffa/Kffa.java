@@ -104,6 +104,6 @@ public final class Kffa extends JavaPlugin {
 
   @Override
   public void onDisable() {
-    // Plugin shutdown logic
+    DBConnector.getINSTANCE().close();
   }
 }
