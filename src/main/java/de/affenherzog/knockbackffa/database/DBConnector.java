@@ -3,12 +3,11 @@ package de.affenherzog.knockbackffa.database;
 import com.zaxxer.hikari.HikariDataSource;
 import de.affenherzog.knockbackffa.Kffa;
 import de.chojo.sadu.datasource.DataSourceCreator;
-import de.chojo.sadu.mapper.RowMapperRegistry;
 import de.chojo.sadu.mariadb.databases.MariaDb;
-import de.chojo.sadu.mariadb.mapper.MariaDbMapper;
-import de.chojo.sadu.queries.configuration.QueryConfiguration;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.sql.DataSource;
 import lombok.Getter;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public final class DBConnector {
@@ -18,6 +17,9 @@ public final class DBConnector {
 
   @Getter
   private final HikariDataSource dataSource;
+
+  @Getter
+  private final Connection connection;
 
 
   private DBConnector() {
@@ -31,19 +33,20 @@ public final class DBConnector {
             .database(config.getString("database.database"))
         )
         .create()
-        .withMaximumPoolSize(3)
-        .withMinimumIdle(1)
+        .withMaximumPoolSize(10)
+        .withMinimumIdle(3)
         .build();
 
-    QueryConfiguration queryConfiguration = QueryConfiguration.builder(dataSource)
-        .setExceptionHandler(
-            err -> Kffa.getInstance().getLogger().severe("An error occured during a database request" + err))
-        .setThrowExceptions(true)
-        .setAtomic(true)
-        .setRowMapperRegistry(new RowMapperRegistry().register(MariaDbMapper.getDefaultMapper()))
-        .build();
+    try {
+      this.connection = ((DataSource) dataSource).getConnection();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
 
-    QueryConfiguration.setDefault(queryConfiguration);
+  }
+
+  public void close() {
+    dataSource.close();
   }
 
 
