@@ -30,7 +30,7 @@ public class Game {
     }
 
     this.map = Kffa.getInstance().getMapContainer().getRandomMap(map);
-    map.loadWorld();
+    map.prepareWorld();
 
     this.spawnLocation = generateLocation();
     teleportPlayer();

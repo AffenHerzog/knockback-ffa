@@ -4,6 +4,7 @@
       "displayName": "<bold><green>Wald",
       "description": "Ein wunderschöner Wald",
       "name": "forest",
+      "time": 1000,
       "spawnLocation": {
         "x": 0,
         "y": 100,
@@ -14,6 +15,7 @@
       "displayName": "<bold><black>Void",
       "description": "Das ist das nichts",
       "name": "void",
+      "time": 0,
       "spawnLocation": {
         "x": 0,
         "y": 100,
