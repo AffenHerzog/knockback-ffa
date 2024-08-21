@@ -13,11 +13,13 @@ public class PlayerStats {
   private int kills, deaths, money, rankPoints;
 
   public void increaseKills() {
-    this.kills = kills ++;
+    this.kills ++;
+    updateRankPoints(20);
   }
 
   public void increaseDeaths() {
-    this.deaths = deaths ++;
+    this.deaths ++;
+    updateRankPoints(-10);
   }
 
   public boolean updateMoney(int money) {
@@ -28,7 +30,7 @@ public class PlayerStats {
     return false;
   }
 
-  public void updateRankPoints(int rankPoints) {
+  private void updateRankPoints(int rankPoints) {
     this.rankPoints = this.rankPoints + rankPoints;
 
     if (this.rankPoints < 0) {
