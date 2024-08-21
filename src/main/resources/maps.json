@@ -3,24 +3,26 @@
     {
       "displayName": "<bold><green>Wald",
       "description": "Ein wunderschöner Wald",
-      "name": "forest",
+      "name": "world1",
       "time": 1000,
       "spawnLocation": {
         "x": 0,
         "y": 100,
         "z": 0
-      }
+      },
+      "deathZoneY": 0
     },
     {
       "displayName": "<bold><black>Void",
       "description": "Das ist das nichts",
-      "name": "void",
-      "time": 0,
+      "name": "world2",
+      "time": 18000,
       "spawnLocation": {
         "x": 0,
         "y": 100,
         "z": 0
-      }
+      },
+      "deathZoneY": 0
     }
   ]
 }

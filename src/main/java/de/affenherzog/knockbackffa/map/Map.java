@@ -17,7 +17,9 @@ public record Map(
     Component description,
     String name,
     int time,
-    SimpleLocation spawnLocation) {
+    SimpleLocation spawnLocation,
+    int deathZoneY
+) {
 
   @JsonCreator
   public Map(
@@ -25,7 +27,9 @@ public record Map(
       @JsonProperty("description") String description,
       @JsonProperty("name") String name,
       @JsonProperty("time") int time,
-      @JsonProperty("spawnLocation") SimpleLocation spawnLocation
+      @JsonProperty("spawnLocation") SimpleLocation spawnLocation,
+      @JsonProperty("deathZoneY") int deathZoneY
+
   ) {
 
     this(
@@ -33,7 +37,8 @@ public record Map(
         MiniMessage.miniMessage().deserialize(description),
         name,
         time,
-        spawnLocation
+        spawnLocation,
+        deathZoneY
     );
   }
 
