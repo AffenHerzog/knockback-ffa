@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.affenherzog.knockbackffa.command.MapSkipCommand;
 import de.affenherzog.knockbackffa.database.DBConnector;
 import de.affenherzog.knockbackffa.game.Game;
+import de.affenherzog.knockbackffa.listener.KffaPlayerHitListener;
 import de.affenherzog.knockbackffa.listener.PlayerDamageListener;
 import de.affenherzog.knockbackffa.listener.PlayerJoinListener;
 import de.affenherzog.knockbackffa.listener.PlayerQuitListener;
@@ -104,6 +105,7 @@ public final class Kffa extends JavaPlugin {
     pluginManager.registerEvents(new PlayerQuitListener(), this);
     pluginManager.registerEvents(new PlayerDamageListener(), this);
     pluginManager.registerEvents(new WeatherChangeListener(), this);
+    pluginManager.registerEvents(new KffaPlayerHitListener(), this);
   }
 
   @Override
