@@ -18,6 +18,6 @@ public class KffaPlayerHitListener implements Listener {
       return;
     }
 
-    targetPlayer.getLastHitTracker().setLastInteract(hitterPlayer);
+    targetPlayer.getLastHitTracker().setLastHit(hitterPlayer);
   }
 }

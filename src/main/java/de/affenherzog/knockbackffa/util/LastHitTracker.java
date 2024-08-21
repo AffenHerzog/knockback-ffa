@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class LastHitTracker {
-  private KffaPlayer lastInteract;
+  private KffaPlayer lastHit;
 
 }
