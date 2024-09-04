@@ -13,6 +13,7 @@ import de.affenherzog.knockbackffa.listener.PlayerQuitListener;
 import de.affenherzog.knockbackffa.listener.WeatherChangeListener;
 import de.affenherzog.knockbackffa.map.MapContainer;
 import de.affenherzog.knockbackffa.player.KffaPlayer;
+import de.affenherzog.knockbackffa.util.InFightReset;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.lifecycle.event.LifecycleEventManager;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
@@ -70,6 +71,8 @@ public final class Kffa extends JavaPlugin {
   }
 
   private void startGame() {
+    Bukkit.getScheduler().runTaskTimer(Kffa.getInstance(), new InFightReset(), 0L, 10L);
+
     Kffa.getInstance().getScheduler().runTaskAsynchronously(Kffa.getInstance(), () -> {
       loadMaps();
 

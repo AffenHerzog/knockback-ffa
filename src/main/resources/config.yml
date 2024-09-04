@@ -9,3 +9,4 @@ player-first-join-values:
   deaths: 0
   money: 1000
   rank-points: 500
+in-fight-reset-time-sec: 20
