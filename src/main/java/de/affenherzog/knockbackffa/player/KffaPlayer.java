@@ -2,7 +2,7 @@ package de.affenherzog.knockbackffa.player;
 
 import de.affenherzog.knockbackffa.Kffa;
 import de.affenherzog.knockbackffa.game.Game;
-import de.affenherzog.knockbackffa.util.LastHitTracker;
+import de.affenherzog.knockbackffa.util.InFightTracker;
 import lombok.Getter;
 import org.bukkit.WeatherType;
 import org.bukkit.entity.Player;
@@ -17,14 +17,14 @@ public class KffaPlayer {
   private final PlayerStats playerStats;
 
   @Getter
-  private final LastHitTracker lastHitTracker;
+  private final InFightTracker inFightTracker;
 
   public KffaPlayer(Player player, PlayerStats playerStats) {
     this.player = player;
     this.playerStats = playerStats;
     this.game = Kffa.getInstance().getGame();
 
-    this.lastHitTracker = new LastHitTracker();
+    this.inFightTracker = new InFightTracker();
 
     initPlayer();
   }

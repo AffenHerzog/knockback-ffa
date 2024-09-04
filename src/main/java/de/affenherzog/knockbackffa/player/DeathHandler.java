@@ -31,7 +31,7 @@ public class DeathHandler {
   }
 
   private static void handleKiller(@NotNull KffaPlayer victimKffaPlayer) {
-    final KffaPlayer killerPlayer = victimKffaPlayer.getLastHitTracker().getLastHit();
+    final KffaPlayer killerPlayer = victimKffaPlayer.getInFightTracker().getLastHitPlayer();
     if (killerPlayer != null) {
       killerPlayer.getPlayerStats().increaseKills();
     }

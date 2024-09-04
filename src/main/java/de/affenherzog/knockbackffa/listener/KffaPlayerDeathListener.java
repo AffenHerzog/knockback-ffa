@@ -18,7 +18,7 @@ public class KffaPlayerDeathListener implements Listener {
       return;
     }
 
-    victimPlayer.getLastHitTracker().setLastHit(null);
+    victimPlayer.getInFightTracker().reset();
   }
 
 }
