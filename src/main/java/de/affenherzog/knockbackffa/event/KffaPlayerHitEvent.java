@@ -17,7 +17,7 @@ public class KffaPlayerHitEvent extends Event {
 
   private final Player hitterPlayer, targetPlayer;
 
-  public KffaPlayerHitEvent(Player hitterPlayer, Player targetPlayer) {
+  public KffaPlayerHitEvent(@NotNull Player hitterPlayer, @NotNull Player targetPlayer) {
     this.hitterPlayer = hitterPlayer;
     this.targetPlayer = targetPlayer;
   }
