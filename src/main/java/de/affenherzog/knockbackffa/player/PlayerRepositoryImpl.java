@@ -125,7 +125,7 @@ public class PlayerRepositoryImpl implements PlayerRepository {
 
 
   @Override
-  public CompletableFuture<Optional<PlayerStats>> findByUUID(UUID uuid) {
+  public CompletableFuture<Optional<PlayerStats>> findByUUID(@NotNull UUID uuid) {
     return CompletableFuture.supplyAsync(() -> {
 
       try (var stmt = DBConnector.getINSTANCE().getConnection().prepareStatement(
