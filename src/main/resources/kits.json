@@ -1,0 +1,22 @@
+{
+  "kits": [
+    {
+      "type": "DefaultKit",
+      "displayName": "<red>normal",
+      "stick": {
+        "displayName": "<dark_red>Hauer",
+        "knockbackLevel": 1
+      },
+      "specialItem": null
+    },
+    {
+      "type": "EnderPearlKit",
+      "displayName": "<purple>ep",
+      "stick": {
+        "displayName": "<purple>Uiii",
+        "knockbackLevel": 3
+      },
+      "specialItem": null
+    }
+  ]
+}

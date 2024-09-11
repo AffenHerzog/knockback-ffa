@@ -1,7 +1,9 @@
 package de.affenherzog.knockbackffa;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.affenherzog.knockbackffa.command.MapSkipCommand;
+import de.affenherzog.knockbackffa.config.CustomConfigLoader;
+import de.affenherzog.knockbackffa.config.KitConfig;
+import de.affenherzog.knockbackffa.config.MapConfig;
 import de.affenherzog.knockbackffa.database.DBConnector;
 import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.listener.KffaPlayerDeathListener;
@@ -13,12 +15,11 @@ import de.affenherzog.knockbackffa.listener.PlayerQuitListener;
 import de.affenherzog.knockbackffa.listener.WeatherChangeListener;
 import de.affenherzog.knockbackffa.map.MapContainer;
 import de.affenherzog.knockbackffa.player.KffaPlayer;
+import de.affenherzog.knockbackffa.player.kit.KitContainer;
 import de.affenherzog.knockbackffa.util.InFightReset;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.lifecycle.event.LifecycleEventManager;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -45,7 +46,8 @@ public final class Kffa extends JavaPlugin {
   @Getter
   private MapContainer mapContainer;
 
-  private static final String MAPS_FILE_NAME = "maps.json";
+  @Getter
+  private KitContainer kitContainer;
 
   @Override
   public void onEnable() {
@@ -56,44 +58,32 @@ public final class Kffa extends JavaPlugin {
 
     DBConnector.getINSTANCE();
 
-    copyMapsFile();
+    CustomConfigLoader.copyConfigs();
 
     registerCommands();
     registerListener();
 
-    startGame();
+    startInFightResetTask();
+
+    startGameAsync();
   }
 
-  private void copyMapsFile() {
-    if (!new File(getDataFolder(), "/" + MAPS_FILE_NAME).exists()) {
-      saveResource(MAPS_FILE_NAME, false);
-    }
-  }
-
-  private void startGame() {
+  private void startInFightResetTask() {
     Bukkit.getScheduler().runTaskTimer(Kffa.getInstance(), new InFightReset(), 0L, 10L);
+  }
+
+  private void startGameAsync() {
 
     Kffa.getInstance().getScheduler().runTaskAsynchronously(Kffa.getInstance(), () -> {
-      loadMaps();
+
+      this.mapContainer = (MapContainer) CustomConfigLoader.CONFIGS.get(MapConfig.class).loadObject();
+      this.kitContainer = (KitContainer) CustomConfigLoader.CONFIGS.get(KitConfig.class).loadObject();
 
       Kffa.getInstance().getScheduler().runTask(Kffa.getInstance(), () -> {
         this.game = new Game();
       });
 
     });
-  }
-
-  private void loadMaps() {
-    final ObjectMapper mapper = new ObjectMapper();
-
-    try {
-      this.mapContainer = mapper.readValue(
-          new File(getDataFolder() + "/" + MAPS_FILE_NAME),
-          MapContainer.class);
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 
   private void registerCommands() {

@@ -29,7 +29,7 @@ public class Game {
       map.unloadWorld();
     }
 
-    this.map = Kffa.getInstance().getMapContainer().getRandomMap(map);
+    this.map = Kffa.getInstance().getMapContainer().getRandom(map);
     map.prepareWorld();
 
     this.spawnLocation = generateLocation();

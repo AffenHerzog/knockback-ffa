@@ -2,7 +2,7 @@ package de.affenherzog.knockbackffa.util;
 
 import de.affenherzog.knockbackffa.player.KffaPlayer;
 import lombok.Getter;
-import org.jetbrains.annotations.NotNull;;
+import org.jetbrains.annotations.NotNull;
 
 @Getter
 public class InFightTracker {
