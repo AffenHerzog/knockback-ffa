@@ -10,3 +10,7 @@ player-first-join-values:
   money: 1000
   rank-points: 500
 in-fight-reset-time-sec: 20
+double-jump:
+  multiply: 1.5
+  y: 1
+
