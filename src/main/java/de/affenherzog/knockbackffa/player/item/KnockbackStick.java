@@ -1,4 +1,4 @@
-package de.affenherzog.knockbackffa.player.kit;
+package de.affenherzog.knockbackffa.player.item;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

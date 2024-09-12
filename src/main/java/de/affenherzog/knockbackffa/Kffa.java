@@ -15,7 +15,7 @@ import de.affenherzog.knockbackffa.listener.PlayerQuitListener;
 import de.affenherzog.knockbackffa.listener.WeatherChangeListener;
 import de.affenherzog.knockbackffa.map.MapContainer;
 import de.affenherzog.knockbackffa.player.KffaPlayer;
-import de.affenherzog.knockbackffa.player.kit.KitContainer;
+import de.affenherzog.knockbackffa.player.kit.KitDataContainer;
 import de.affenherzog.knockbackffa.util.InFightReset;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.lifecycle.event.LifecycleEventManager;
@@ -47,7 +47,7 @@ public final class Kffa extends JavaPlugin {
   private MapContainer mapContainer;
 
   @Getter
-  private KitContainer kitContainer;
+  private KitDataContainer kitDataContainer;
 
   @Override
   public void onEnable() {
@@ -77,7 +77,7 @@ public final class Kffa extends JavaPlugin {
     Kffa.getInstance().getScheduler().runTaskAsynchronously(Kffa.getInstance(), () -> {
 
       this.mapContainer = (MapContainer) CustomConfigLoader.CONFIGS.get(MapConfig.class).loadObject();
-      this.kitContainer = (KitContainer) CustomConfigLoader.CONFIGS.get(KitConfig.class).loadObject();
+      this.kitDataContainer = (KitDataContainer) CustomConfigLoader.CONFIGS.get(KitConfig.class).loadObject();
 
       Kffa.getInstance().getScheduler().runTask(Kffa.getInstance(), () -> {
         this.game = new Game();
