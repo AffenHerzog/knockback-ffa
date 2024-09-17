@@ -4,7 +4,7 @@ public class DefaultKitUpgrade extends KitUpgrade {
 
   public static final String FIELD_TYPE = "DefaultKitUpgrade";
 
-  public DefaultKitUpgrade(int price, int doubleJumpCooldown) {
-    super(price, doubleJumpCooldown);
+  public DefaultKitUpgrade(int price, int doubleJumpCooldown, int stickKnockback) {
+    super(price, doubleJumpCooldown, stickKnockback);
   }
 }

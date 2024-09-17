@@ -13,11 +13,12 @@ import lombok.Getter;
 public abstract class KitUpgrade {
 
   @Getter
-  private final int price, doubleJumpCooldown;
+  private final int price, doubleJumpCooldown, stickKnockback;
 
-  public KitUpgrade(int price, int doubleJumpCooldown) {
+  public KitUpgrade(int price, int doubleJumpCooldown, int stickKnockback) {
     this.price = price;
     this.doubleJumpCooldown = doubleJumpCooldown;
+    this.stickKnockback = stickKnockback;
   }
 
 }

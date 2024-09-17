@@ -1,22 +1,19 @@
 package de.affenherzog.knockbackffa.player.item;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 
 public class KnockbackStick {
 
   private final Component displayName;
 
+  @Getter
   private final int knockbackLevel;
 
   @JsonCreator
-  public KnockbackStick(
-      @JsonProperty("displayName") String displayName,
-      @JsonProperty("knockbackLevel") int knockbackLevel
-  ) {
-    this.displayName = MiniMessage.miniMessage().deserialize(displayName);
+  public KnockbackStick(Component displayName, int knockbackLevel) {
+    this.displayName = displayName;
     this.knockbackLevel = knockbackLevel;
   }
 }

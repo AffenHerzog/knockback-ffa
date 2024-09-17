@@ -2,7 +2,7 @@ package de.affenherzog.knockbackffa.player.kit.data;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import de.affenherzog.knockbackffa.player.item.KnockbackStick;
+import de.affenherzog.knockbackffa.player.item.data.KnockbackStickData;
 import de.affenherzog.knockbackffa.player.kit.KitType;
 import de.affenherzog.knockbackffa.player.kit.upgrade.KitUpgrade;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public abstract class KitData {
 
   protected final Component displayName;
 
-  protected final KnockbackStick stick;
+  protected final KnockbackStickData stick;
 
   protected final String specialItem;
 
@@ -31,7 +31,7 @@ public abstract class KitData {
 
   public KitData(
       String displayName,
-      KnockbackStick stick,
+      KnockbackStickData stick,
       String specialItem,
       ArrayList<KitUpgrade> kitUpgrades,
       KitType type

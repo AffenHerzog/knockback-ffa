@@ -2,8 +2,6 @@ package de.affenherzog.knockbackffa.player;
 
 import de.affenherzog.knockbackffa.Kffa;
 import de.affenherzog.knockbackffa.game.Game;
-import de.affenherzog.knockbackffa.player.kit.KitType;
-import de.affenherzog.knockbackffa.player.kit.logic.EnderPearlKit;
 import de.affenherzog.knockbackffa.player.kit.logic.Kit;
 import de.affenherzog.knockbackffa.util.InFightTracker;
 import lombok.Getter;
@@ -25,14 +23,19 @@ public class KffaPlayer {
   @Getter
   private Kit kit;
 
+  @Getter
+  private final PlayerKitSettings playerKitSettings;
+
   public KffaPlayer(Player player, PlayerStats playerStats) {
     this.player = player;
     this.playerStats = playerStats;
     this.game = Kffa.getInstance().getGame();
 
     this.inFightTracker = new InFightTracker();
+    this.playerKitSettings = new PlayerKitSettings();
 
-    this.kit = new EnderPearlKit(this, Kffa.getInstance().getKitDataContainer().getKitData(KitType.DEFAULT));
+    this.kit = Kit.buildKit(playerKitSettings.getCurrentKit(), this);
+
     this.kit.init();
 
     initPlayer();

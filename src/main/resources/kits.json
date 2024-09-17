@@ -4,61 +4,66 @@
       "type": "DefaultKit",
       "displayName": "<red>normal",
       "stick": {
-        "displayName": "<dark_red>Hauer",
-        "knockbackLevel": 1
+        "displayName": "<dark_red>Hauer"
       },
-      "upgrades":
-        [
-          {
-            "type": "EnderPearlKitUpgrade",
-            "price": 1000,
-            "doubleJumpCooldown": 6,
-            "enderPearlCooldown": 20,
-            "enderPearlAmount": 1,
-            "enderPearlBlindness": false
-          },
-          {
-            "type": "EnderPearlKitUpgrade",
-            "price": 2000,
-            "doubleJumpCooldown": 5,
-            "enderPearlCooldown": 18,
-            "enderPearlAmount": 1,
-            "enderPearlBlindness": false
-          },
-          {
-            "type": "EnderPearlKitUpgrade",
-            "price": 3000,
-            "doubleJumpCooldown": 3,
-            "enderPearlCooldown": 16,
-            "enderPearlAmount": 1,
-            "enderPearlBlindness": true
-          },
-          {
-            "type": "EnderPearlKitUpgrade",
-            "price": 4000,
-            "doubleJumpCooldown": 2,
-            "enderPearlCooldown": 14,
-            "enderPearlAmount": 2,
-            "enderPearlBlindness": true
-          },
-          {
-            "type": "EnderPearlKitUpgrade",
-            "price": 5000,
-            "doubleJumpCooldown": 1,
-            "enderPearlCooldown": 14,
-            "enderPearlAmount": 3,
-            "enderPearlBlindness": true
-          }
-        ],
+      "upgrades": [
+
+      ],
       "specialItem": null
     },
     {
       "type": "EnderPearlKit",
       "displayName": "<purple>ep",
       "stick": {
-        "displayName": "<purple>Uiii",
-        "knockbackLevel": 3
+        "displayName": "<purple>Uiii"
       },
+      "upgrades": [
+        {
+          "type": "EnderPearlKitUpgrade",
+          "price": 1000,
+          "doubleJumpCooldown": 6,
+          "stickKnockback": 2,
+          "enderPearlCooldown": 20,
+          "enderPearlAmount": 1,
+          "enderPearlBlindness": false
+        },
+        {
+          "type": "EnderPearlKitUpgrade",
+          "price": 2000,
+          "doubleJumpCooldown": 5,
+          "stickKnockback": 1,
+          "enderPearlCooldown": 18,
+          "enderPearlAmount": 1,
+          "enderPearlBlindness": false
+        },
+        {
+          "type": "EnderPearlKitUpgrade",
+          "price": 3000,
+          "doubleJumpCooldown": 3,
+          "stickKnockback": 2,
+          "enderPearlCooldown": 16,
+          "enderPearlAmount": 1,
+          "enderPearlBlindness": true
+        },
+        {
+          "type": "EnderPearlKitUpgrade",
+          "price": 4000,
+          "doubleJumpCooldown": 2,
+          "stickKnockback": 3,
+          "enderPearlCooldown": 14,
+          "enderPearlAmount": 2,
+          "enderPearlBlindness": true
+        },
+        {
+          "type": "EnderPearlKitUpgrade",
+          "price": 5000,
+          "doubleJumpCooldown": 1,
+          "stickKnockback": 4,
+          "enderPearlCooldown": 14,
+          "enderPearlAmount": 3,
+          "enderPearlBlindness": true
+        }
+      ],
       "specialItem": null
     }
   ]
