@@ -5,6 +5,7 @@ import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.player.kit.logic.Kit;
 import de.affenherzog.knockbackffa.util.InFightTracker;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.WeatherType;
 import org.bukkit.entity.Player;
 
@@ -26,26 +27,43 @@ public class KffaPlayer {
   @Getter
   private final PlayerKitSettings playerKitSettings;
 
+  @Getter
+  @Setter
+  private PlayerState playerState;
+
   public KffaPlayer(Player player, PlayerStats playerStats) {
     this.player = player;
     this.playerStats = playerStats;
-    this.game = Kffa.getInstance().getGame();
 
+    this.playerState = PlayerState.SPAWN;
+    this.game = Kffa.getInstance().getGame();
     this.inFightTracker = new InFightTracker();
     this.playerKitSettings = new PlayerKitSettings();
+
+    initPlayer();
 
     this.kit = Kit.buildKit(playerKitSettings.getCurrentKit(), this);
 
     this.kit.init();
-
-    initPlayer();
   }
 
   private void initPlayer() {
-    player.setHealthScaled(true);
-    player.setHealthScale(6);
-    player.setSaturation(20);
-    player.setPlayerWeather(WeatherType.CLEAR);
+    this.player.setHealthScaled(true);
+    this.player.setHealthScale(6);
+    this.player.setSaturation(20);
+    this.player.setPlayerWeather(WeatherType.CLEAR);
+  }
+
+  public void handleDeath() {
+    this.playerState = PlayerState.SPAWN;
+    this.player.getInventory().clear();
+    DeathHandler.handleDeath(player);
+  }
+
+  //This is a method called once when the player jumps off the spawn island and starts playing.
+  public void handlePlaying() {
+    this.playerState = PlayerState.PLAYING;
+    this.kit.setGameInventory();
   }
 
 }
