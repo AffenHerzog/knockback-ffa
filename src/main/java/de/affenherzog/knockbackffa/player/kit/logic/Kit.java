@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class Kit {
@@ -56,6 +58,13 @@ public abstract class Kit {
 
   public void init() {
     Bukkit.getPluginManager().registerEvents(doubleJump, Kffa.getInstance());
+  }
+
+  public void setGameInventory() {
+    final Player player = kffaPlayer.getPlayer();
+    final Inventory inv = player.getInventory();
+
+    inv.setItem(0, this.knockbackStick.buildItemStack());
   }
 
 
