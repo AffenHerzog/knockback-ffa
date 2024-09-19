@@ -9,6 +9,7 @@ import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.listener.KffaPlayerDeathListener;
 import de.affenherzog.knockbackffa.listener.KffaPlayerHitListener;
 import de.affenherzog.knockbackffa.listener.PlayerDamageListener;
+import de.affenherzog.knockbackffa.listener.PlayerDropItemListener;
 import de.affenherzog.knockbackffa.listener.PlayerJoinListener;
 import de.affenherzog.knockbackffa.listener.PlayerMoveListener;
 import de.affenherzog.knockbackffa.listener.PlayerQuitListener;
@@ -103,6 +104,7 @@ public final class Kffa extends JavaPlugin {
     pluginManager.registerEvents(new PlayerMoveListener(), this);
     pluginManager.registerEvents(new KffaPlayerHitListener(), this);
     pluginManager.registerEvents(new KffaPlayerDeathListener(), this);
+    pluginManager.registerEvents(new PlayerDropItemListener(), this);
   }
 
   @Override
