@@ -10,6 +10,7 @@ import de.affenherzog.knockbackffa.player.kit.upgrade.KitUpgrade;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -24,6 +25,8 @@ public abstract class Kit {
 
   protected final KitData kitData;
   protected final KitUpgrade kitUpgrade;
+
+  @Getter
   protected final DoubleJump doubleJump;
   protected final KnockbackStick knockbackStick;
 
@@ -57,7 +60,7 @@ public abstract class Kit {
   }
 
   public void init() {
-    Bukkit.getPluginManager().registerEvents(doubleJump, Kffa.getInstance());
+
   }
 
   public void setGameInventory() {
