@@ -1,28 +1,25 @@
 package de.affenherzog.knockbackffa.player;
 
 import de.affenherzog.knockbackffa.player.kit.KitType;
-import de.affenherzog.knockbackffa.player.kit.logic.DefaultKit;
-import de.affenherzog.knockbackffa.player.kit.logic.EnderPearlKit;
-import de.affenherzog.knockbackffa.player.kit.logic.Kit;
 import java.util.HashMap;
 import lombok.Getter;
 
 public class PlayerKitSettings {
 
   @Getter
-  private final HashMap<Class<? extends Kit>, Integer> kitLevels = new HashMap<>();
+  private final HashMap<KitType, Integer> kitLevels = new HashMap<>();
 
   @Getter
-  private final KitType currentKit;
+  private final KitType currentKitType;
 
   public PlayerKitSettings() {
 
     //TODO ADD DB
 
-    this.currentKit = KitType.ENDER_PEARL;
+    this.currentKitType = KitType.ENDER_PEARL;
 
-    this.kitLevels.put(DefaultKit.class, 0);
-    this.kitLevels.put(EnderPearlKit.class, 1);
+    this.kitLevels.put(KitType.DEFAULT, 0);
+    this.kitLevels.put(KitType.ENDER_PEARL, 1);
   }
 
 }

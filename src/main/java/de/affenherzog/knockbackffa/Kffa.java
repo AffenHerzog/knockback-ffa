@@ -7,6 +7,7 @@ import de.affenherzog.knockbackffa.config.MapConfig;
 import de.affenherzog.knockbackffa.database.DBConnector;
 import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.listener.DoubleJumpListener;
+import de.affenherzog.knockbackffa.listener.EnderPearlListener;
 import de.affenherzog.knockbackffa.listener.KffaPlayerDeathListener;
 import de.affenherzog.knockbackffa.listener.KffaPlayerHitListener;
 import de.affenherzog.knockbackffa.listener.PlayerDamageListener;
@@ -107,6 +108,7 @@ public final class Kffa extends JavaPlugin {
     pluginManager.registerEvents(new KffaPlayerDeathListener(), this);
     pluginManager.registerEvents(new PlayerDropItemListener(), this);
     pluginManager.registerEvents(new DoubleJumpListener(), this);
+    pluginManager.registerEvents(new EnderPearlListener(), this);
   }
 
   @Override

@@ -9,8 +9,10 @@ public class EnderPearlKitUpgrade extends KitUpgrade {
 
   public static final String FIELD_TYPE = "EnderPearlKitUpgrade";
 
+  @Getter
   private final int enderPearlCooldown, enderPearlAmount;
 
+  @Getter
   private final boolean enderPearlBlindness;
 
   @JsonCreator
