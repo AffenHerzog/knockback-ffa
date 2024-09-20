@@ -62,12 +62,12 @@ public final class Kffa extends JavaPlugin {
 
     CustomConfigLoader.copyConfigs();
 
-    registerCommands();
-    registerListener();
-
     startInFightResetTask();
 
     startGameAsync();
+
+    registerCommands();
+    registerListener();
   }
 
   private void startInFightResetTask() {
