@@ -18,6 +18,7 @@ public class PlayerQuitListener implements Listener {
     final KffaPlayer kffaPlayer = Kffa.getInstance().getPlayerHashMap().get(player);
 
     if (kffaPlayer != null) {
+      player.getInventory().clear();
       checkInFightLeave(kffaPlayer);
       PlayerRepositoryImpl.getINSTANCE().update(kffaPlayer);
       Kffa.getInstance().getPlayerHashMap().remove(player);
