@@ -23,15 +23,13 @@ public class PlayerDamageListener implements Listener {
 
     final Player targetPlayer = (Player) event.getEntity();
 
-    if (cause.equals(DamageCause.FALL)) {
-      event.setCancelled(true);
-    }
-
     if (cause.equals(DamageCause.ENTITY_ATTACK)) {
       if (event.getDamageSource().getCausingEntity() instanceof Player hitterPlayer) {
         KffaPlayerHitEvent kffaPlayerHitEvent = new KffaPlayerHitEvent(hitterPlayer, targetPlayer);
         Bukkit.getPluginManager().callEvent(kffaPlayerHitEvent);
       }
+    } else {
+      event.setCancelled(true);
     }
 
     event.setDamage(0);
