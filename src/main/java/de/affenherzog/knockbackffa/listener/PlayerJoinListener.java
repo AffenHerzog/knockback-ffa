@@ -4,6 +4,7 @@ import de.affenherzog.knockbackffa.Kffa;
 import de.affenherzog.knockbackffa.player.KffaPlayer;
 import de.affenherzog.knockbackffa.player.PlayerRepositoryImpl;
 import de.affenherzog.knockbackffa.player.PlayerStats;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,7 +23,10 @@ public class PlayerJoinListener implements Listener {
           .map(stats -> new KffaPlayer(player, stats))
           .orElseGet(() -> registerPlayer(player));
 
-      Kffa.getInstance().getPlayerHashMap().put(player, kffaPlayer);
+      Bukkit.getScheduler().runTask(Kffa.getInstance(), () -> {
+        kffaPlayer.init();
+        Kffa.getInstance().getPlayerHashMap().put(player, kffaPlayer);
+      });
     });
 
     Kffa.getInstance().getGame().teleport(player);
