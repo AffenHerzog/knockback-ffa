@@ -22,7 +22,7 @@ public class PlayerRepositoryImpl implements PlayerRepository {
   @Override
   public CompletableFuture<Void> update(@NotNull KffaPlayer kffaPlayer) {
     final PlayerStats stats = kffaPlayer.getPlayerStats();
-    final UUID uuid = kffaPlayer.player.getUniqueId();
+    final UUID uuid = kffaPlayer.getPlayer().getUniqueId();
 
     return CompletableFuture.runAsync(() -> {
       updatePlayerStats(stats, uuid);
@@ -37,7 +37,7 @@ public class PlayerRepositoryImpl implements PlayerRepository {
             + "where uuid = ?;")
     ) {
 
-      stmt.setString(1, player.player.getName());
+      stmt.setString(1, player.getPlayer().getName());
       stmt.setString(2, uuid.toString());
 
       stmt.executeUpdate();
@@ -104,8 +104,8 @@ public class PlayerRepositoryImpl implements PlayerRepository {
                   + "VALUES (?, ?, ?)")
           ) {
 
-            player_stmt.setString(1, kffaPlayer.player.getUniqueId().toString());
-            player_stmt.setString(2, kffaPlayer.player.getName());
+            player_stmt.setString(1, kffaPlayer.getPlayer().getUniqueId().toString());
+            player_stmt.setString(2, kffaPlayer.getPlayer().getName());
             player_stmt.setInt(3, lastId);
 
             player_stmt.executeUpdate();

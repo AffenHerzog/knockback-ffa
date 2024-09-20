@@ -12,8 +12,8 @@ import org.bukkit.entity.Player;
 public class KffaPlayer {
 
   @Getter
-  final Player player;
-  final Game game;
+  private final Player player;
+  private final Game game;
 
   @Getter
   private final PlayerStats playerStats;
@@ -39,11 +39,11 @@ public class KffaPlayer {
     this.game = Kffa.getInstance().getGame();
     this.inFightTracker = new InFightTracker();
     this.playerKitSettings = new PlayerKitSettings();
+  }
 
+  public void init() {
     initPlayer();
-
-    this.kit = Kit.buildKit(playerKitSettings.getCurrentKit(), this);
-
+    this.kit = Kit.buildKit(playerKitSettings.getCurrentKitType(), this);
     this.kit.init();
   }
 
