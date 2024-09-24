@@ -2,33 +2,50 @@ package de.affenherzog.knockbackffa.game;
 
 import de.affenherzog.knockbackffa.Kffa;
 import de.affenherzog.knockbackffa.map.Map;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class Game {
 
+  @Getter
   private Map map;
 
-  public void start() {
+  private Location spawnLocation;
+
+  public Game() {
     mapChange();
   }
 
+  public void teleport(@NotNull Player player) {
+    player.teleportAsync(this.spawnLocation);
+  }
+
   public void mapChange() {
-    this.map = Kffa.getInstance().getMapManager().getRandomMap(map);
-    map.loadWorld();
+
+    if (this.map != null) {
+      map.unloadWorld();
+    }
+
+    this.map = Kffa.getInstance().getMapContainer().getRandom(map);
+    map.prepareWorld();
+
+    this.spawnLocation = generateLocation();
     teleportPlayer();
   }
 
+  private Location generateLocation() {
+    return new Location(
+        Bukkit.getWorld(map.name()),
+        map.spawnLocation().x(),
+        map.spawnLocation().y(),
+        map.spawnLocation().z());
+  }
+
   private void teleportPlayer() {
-    Bukkit.getOnlinePlayers().forEach(player -> {
-      player.teleport(
-          new Location(
-              Bukkit.getWorld(map.name()),
-              map.spawnLocation().x(),
-              map.spawnLocation().y(),
-              map.spawnLocation().z()
-          ));
-    });
+    Kffa.getInstance().getPlayerHashMap().keySet().forEach(this::teleport);
   }
 
 }

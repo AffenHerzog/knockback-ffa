@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group = 'de.affenherzog'
@@ -20,10 +21,18 @@ repositories {
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
 
-    compileOnly "org.projectlombok:lombok:1.18.32"
-    annotationProcessor "org.projectlombok:lombok:1.18.32"
+    compileOnly "org.projectlombok:lombok:1.18.34"
+    annotationProcessor "org.projectlombok:lombok:1.18.34"
 
     implementation "net.kyori:adventure-text-minimessage:4.17.0"
+
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.17.0"
+
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.1.0'
+
+    implementation 'de.chojo.sadu:sadu:2.2.2'
+
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.4.1'
 }
 
 def targetJavaVersion = 21
@@ -51,4 +60,12 @@ processResources {
     filesMatching('paper-plugin.yml') {
         expand props
     }
+}
+
+shadowJar {
+    archiveClassifier.set('')
+}
+
+build {
+    dependsOn shadowJar
 }

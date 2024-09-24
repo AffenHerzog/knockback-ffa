@@ -1,13 +1,21 @@
 package de.affenherzog.knockbackffa.map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import de.affenherzog.knockbackffa.config.Container;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MapManager {
+public class MapContainer implements Container {
 
-  final ArrayList<Map> maps = new ArrayList<>();
+  @JsonProperty
+  final ArrayList<Map> maps;
 
-  public Map getRandomMap(Map currentMap) {
+  public MapContainer(@JsonProperty("maps") ArrayList<Map> maps) {
+    this.maps = maps;
+  }
+
+  @Override
+  public Map getRandom(Object currentMap) {
     if (maps.isEmpty()) {
       throw new RuntimeException("No maps found");
     }

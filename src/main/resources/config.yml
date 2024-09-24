@@ -1,0 +1,16 @@
+database:
+  host: localhost
+  port: 3306
+  user: root
+  password: passw
+  database: kffa
+player-first-join-values:
+  kills: 0
+  deaths: 0
+  money: 1000
+  rank-points: 500
+in-fight-reset-time-sec: 20
+double-jump:
+  multiply: 1.5
+  y: 1
+
