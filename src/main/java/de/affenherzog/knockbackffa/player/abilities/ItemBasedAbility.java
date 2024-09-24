@@ -8,4 +8,5 @@ public interface ItemBasedAbility {
 
   ItemStack buildItemStack();
   void setItem(ItemStack item);
+  void applyCooldown();
 }
