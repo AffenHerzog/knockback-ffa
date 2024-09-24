@@ -7,15 +7,20 @@
         "displayName": "<dark_red>Hauer"
       },
       "upgrades": [
-
+        {
+          "type": "DefaultKitUpgrade",
+          "price": 0,
+          "doubleJumpCooldown": 6,
+          "stickKnockback": 2
+        }
       ],
       "specialItem": null
     },
     {
       "type": "EnderPearlKit",
-      "displayName": "<purple>ep",
+      "displayName": "<dark_purple>ep",
       "stick": {
-        "displayName": "<purple>Uiii"
+        "displayName": "<dark_purple>Uiii"
       },
       "upgrades": [
         {
