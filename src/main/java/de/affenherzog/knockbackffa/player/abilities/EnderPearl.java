@@ -16,6 +16,7 @@ public class EnderPearl extends Ability implements ItemBasedAbility {
   
   private final static double BLINDNESS_RADIUS = 5;
   private final static int BLINDNESS_DURATION = 3 * 20;
+  private final static int BLINDNESS_AMPLIFIER = 1;
 
   private final EnderPearlKitUpgrade kitUpgrade;
 
@@ -47,7 +48,7 @@ public class EnderPearl extends Ability implements ItemBasedAbility {
       nearbyEntities.forEach(e -> {
         if (e instanceof Player nearbyPlayer) {
           nearbyPlayer.addPotionEffect(new PotionEffect(
-              PotionEffectType.BLINDNESS, BLINDNESS_DURATION, 1));
+              PotionEffectType.BLINDNESS, BLINDNESS_DURATION, BLINDNESS_AMPLIFIER));
         }
       });
     }, 1);
