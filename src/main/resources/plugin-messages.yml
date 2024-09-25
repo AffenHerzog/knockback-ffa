@@ -1,0 +1,2 @@
+error:
+  no-such-config-path: <red>Diese Nachricht konnte nicht geladen werden, da diese Pfadreferenz nicht gefunden werden konnte.

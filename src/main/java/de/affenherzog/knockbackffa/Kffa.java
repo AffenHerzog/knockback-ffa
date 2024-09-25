@@ -4,6 +4,7 @@ import de.affenherzog.knockbackffa.command.MapSkipCommand;
 import de.affenherzog.knockbackffa.config.json.CustomConfigLoader;
 import de.affenherzog.knockbackffa.config.json.KitConfig;
 import de.affenherzog.knockbackffa.config.json.MapConfig;
+import de.affenherzog.knockbackffa.config.yml.MessageManager;
 import de.affenherzog.knockbackffa.database.DBConnector;
 import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.listener.DoubleJumpListener;
@@ -23,6 +24,7 @@ import de.affenherzog.knockbackffa.util.InFightReset;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.lifecycle.event.LifecycleEventManager;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
+import java.io.File;
 import java.util.HashMap;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -55,6 +57,9 @@ public final class Kffa extends JavaPlugin {
   @Override
   public void onEnable() {
     instance = this;
+
+    MessageManager.initialize(new File(getDataFolder(), "plugin-messages.yml"), getLogger());
+    MessageManager.getInstance().saveDefaultConfig();
 
     getConfig().options().copyDefaults(true);
     saveConfig();
