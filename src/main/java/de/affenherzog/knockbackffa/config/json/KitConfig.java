@@ -1,4 +1,4 @@
-package de.affenherzog.knockbackffa.config;
+package de.affenherzog.knockbackffa.config.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.affenherzog.knockbackffa.player.kit.KitDataContainer;

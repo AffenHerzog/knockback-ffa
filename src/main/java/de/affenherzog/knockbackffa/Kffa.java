@@ -1,9 +1,9 @@
 package de.affenherzog.knockbackffa;
 
 import de.affenherzog.knockbackffa.command.MapSkipCommand;
-import de.affenherzog.knockbackffa.config.CustomConfigLoader;
-import de.affenherzog.knockbackffa.config.KitConfig;
-import de.affenherzog.knockbackffa.config.MapConfig;
+import de.affenherzog.knockbackffa.config.json.CustomConfigLoader;
+import de.affenherzog.knockbackffa.config.json.KitConfig;
+import de.affenherzog.knockbackffa.config.json.MapConfig;
 import de.affenherzog.knockbackffa.database.DBConnector;
 import de.affenherzog.knockbackffa.game.Game;
 import de.affenherzog.knockbackffa.listener.DoubleJumpListener;

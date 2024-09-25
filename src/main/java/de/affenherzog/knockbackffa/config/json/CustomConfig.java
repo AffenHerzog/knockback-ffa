@@ -1,6 +1,7 @@
-package de.affenherzog.knockbackffa.config;
+package de.affenherzog.knockbackffa.config.json;
 
 import de.affenherzog.knockbackffa.Kffa;
+import de.affenherzog.knockbackffa.config.Container;
 import java.io.File;
 import org.jetbrains.annotations.Nullable;
 

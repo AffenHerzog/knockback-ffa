@@ -1,4 +1,4 @@
-package de.affenherzog.knockbackffa.config;
+package de.affenherzog.knockbackffa.config.json;
 
 import java.util.HashMap;
 
