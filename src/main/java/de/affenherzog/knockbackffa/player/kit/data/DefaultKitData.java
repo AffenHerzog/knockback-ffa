@@ -2,6 +2,7 @@ package de.affenherzog.knockbackffa.player.kit.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.affenherzog.knockbackffa.player.item.SpecialItem;
 import de.affenherzog.knockbackffa.player.item.data.KnockbackStickData;
 import de.affenherzog.knockbackffa.player.kit.KitType;
 import de.affenherzog.knockbackffa.player.kit.upgrade.KitUpgrade;
@@ -15,7 +16,7 @@ public class DefaultKitData extends KitData {
   public DefaultKitData(
       @JsonProperty("displayName") String displayName,
       @JsonProperty("stick") KnockbackStickData stick,
-      @JsonProperty("specialItem") String specialItem,
+      @JsonProperty("specialItem") SpecialItem specialItem,
       @JsonProperty("upgrades") ArrayList<KitUpgrade> kitUpgrades
   ) {
 

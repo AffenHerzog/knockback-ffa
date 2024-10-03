@@ -26,14 +26,10 @@ public class EnderPearlListener implements Listener {
         && (event.getAction() == Action.RIGHT_CLICK_AIR
         || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 
-      if (player.hasCooldown(Material.ENDER_PEARL)) {
-        return;
-      }
-
       final KffaPlayer kffaPlayer = Kffa.getInstance().getPlayerHashMap().get(player);
 
       if (kffaPlayer.getKit() instanceof EnderPearlKit enderPearlKit) {
-        enderPearlKit.getKitAbility().executeIfReady();
+        enderPearlKit.getKitAbility().executeIfAllowed();
       }
 
     }

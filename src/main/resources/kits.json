@@ -14,7 +14,10 @@
           "stickKnockback": 2
         }
       ],
-      "specialItem": null
+      "specialItem": {
+        "title": "Joooo",
+        "material": "STONE"
+      }
     },
     {
       "type": "EnderPearlKit",
@@ -69,7 +72,10 @@
           "enderPearlBlindness": true
         }
       ],
-      "specialItem": null
+      "specialItem": {
+        "title": "Joooo",
+        "material": "STONE"
+      }
     }
   ]
 }

@@ -15,13 +15,12 @@ public class Cooldown {
     return this.startTime + (cooldownTimeInSeconds * 1000L) > System.currentTimeMillis();
   }
 
-  public void startCooldown() {
-
-    if (isRunning()) {
-      return;
-    }
-
+  public void start() {
     this.startTime = System.currentTimeMillis();
+  }
+
+  public void reset() {
+    this.startTime = 0L;
   }
 
 }

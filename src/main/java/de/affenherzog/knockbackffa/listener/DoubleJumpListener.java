@@ -30,7 +30,7 @@ public class DoubleJumpListener implements Listener {
     final KffaPlayer kffaPlayer = Kffa.getInstance().getPlayerHashMap().get(player);
 
     if (kffaPlayer != null) {
-      kffaPlayer.getKit().getDoubleJump().executeIfReady();
+      kffaPlayer.getKit().getDoubleJump().executeIfAllowed();
     }
 
   }

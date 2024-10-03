@@ -12,8 +12,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class EnderPearl extends Ability implements ItemBasedAbility {
-  
+public class EnderPearl extends ItemCooldownAbility {
+
   private final static double BLINDNESS_RADIUS = 5;
   private final static int BLINDNESS_DURATION = 3 * 20;
   private final static int BLINDNESS_AMPLIFIER = 1;
@@ -21,14 +21,8 @@ public class EnderPearl extends Ability implements ItemBasedAbility {
   private final EnderPearlKitUpgrade kitUpgrade;
 
   public EnderPearl(KffaPlayer player, EnderPearlKitUpgrade kitUpgrade) {
-    super(player);
+    super(player, Material.ENDER_PEARL, kitUpgrade.getEnderPearlCooldown());
     this.kitUpgrade = kitUpgrade;
-  }
-
-  @Override
-  protected void executeAbility() {
-    setItem(buildItemStack());
-    applyCooldown();
   }
 
   private boolean shouldApplyBlindness() {
@@ -59,18 +53,4 @@ public class EnderPearl extends Ability implements ItemBasedAbility {
     return new ItemStack(Material.ENDER_PEARL);
   }
 
-  @Override
-  public void setItem(ItemStack item) {
-    Bukkit.getScheduler().runTaskLater(Kffa.getInstance(), () -> {
-      this.player.getPlayer().getInventory().setItem(ABIlITY_ITEM_SLOT, item);
-    }, 1);
-  }
-
-  @Override
-  public void applyCooldown() {
-    Bukkit.getScheduler().runTaskLater(Kffa.getInstance(), () -> {
-      this.player.getPlayer()
-          .setCooldown(Material.ENDER_PEARL, this.kitUpgrade.getEnderPearlCooldown() * 20);
-    }, 1);
-  }
 }

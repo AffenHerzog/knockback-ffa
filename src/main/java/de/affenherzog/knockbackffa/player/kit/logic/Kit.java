@@ -4,7 +4,7 @@ import de.affenherzog.knockbackffa.Kffa;
 import de.affenherzog.knockbackffa.player.KffaPlayer;
 import de.affenherzog.knockbackffa.player.abilities.Ability;
 import de.affenherzog.knockbackffa.player.abilities.DoubleJump;
-import de.affenherzog.knockbackffa.player.abilities.ItemBasedAbility;
+import de.affenherzog.knockbackffa.player.abilities.ItemCooldownAbility;
 import de.affenherzog.knockbackffa.player.item.KnockbackStick;
 import de.affenherzog.knockbackffa.player.kit.KitType;
 import de.affenherzog.knockbackffa.player.kit.data.KitData;
@@ -82,11 +82,21 @@ public abstract class Kit {
     final Player player = kffaPlayer.getPlayer();
     final Inventory inv = player.getInventory();
 
-    if (kitAbility instanceof ItemBasedAbility itemBased) {
+    inv.clear();
+
+    if (kitAbility instanceof ItemCooldownAbility itemBased) {
       itemBased.setItem(itemBased.buildItemStack());
     }
 
     inv.setItem(0, this.knockbackStick.buildItemStack());
+  }
+
+  public void resetCooldowns() {
+    doubleJump.resetCooldown();
+    if (kitAbility == null) {
+      return;
+    }
+    kitAbility.resetCooldown();
   }
 
 

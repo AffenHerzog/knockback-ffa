@@ -2,6 +2,8 @@ package de.affenherzog.knockbackffa.player;
 
 import de.affenherzog.knockbackffa.Kffa;
 import de.affenherzog.knockbackffa.game.Game;
+import de.affenherzog.knockbackffa.player.gui.hotbar_item.HotbarItemManager;
+import de.affenherzog.knockbackffa.player.kit.KitType;
 import de.affenherzog.knockbackffa.player.kit.logic.Kit;
 import de.affenherzog.knockbackffa.util.InFightTracker;
 import lombok.Getter;
@@ -28,23 +30,28 @@ public class KffaPlayer {
   private final PlayerKitSettings playerKitSettings;
 
   @Getter
+  private final HotbarItemManager hotbarItemManager;
+
+  @Getter
   @Setter
   private PlayerState playerState;
 
   public KffaPlayer(Player player, PlayerStats playerStats) {
     this.player = player;
     this.playerStats = playerStats;
-
-    this.playerState = PlayerState.SPAWN;
     this.game = Kffa.getInstance().getGame();
     this.inFightTracker = new InFightTracker();
     this.playerKitSettings = new PlayerKitSettings();
+    this.hotbarItemManager = new HotbarItemManager(this);
   }
 
   public void init() {
     initPlayer();
+    this.playerState = PlayerState.SPAWN;
+    this.hotbarItemManager.init();
     this.kit = Kit.buildKit(playerKitSettings.getCurrentKitType(), this);
     this.kit.init();
+    setSpawnInventory();
   }
 
   private void initPlayer() {
@@ -56,14 +63,24 @@ public class KffaPlayer {
 
   public void handleDeath() {
     this.playerState = PlayerState.SPAWN;
-    this.player.getInventory().clear();
+    this.kit.resetCooldowns();
     DeathHandler.handleDeath(player);
+    setSpawnInventory();
   }
 
   //This is a method called once when the player jumps off the spawn island and starts playing.
   public void handlePlaying() {
     this.playerState = PlayerState.PLAYING;
     this.kit.setGameInventory();
+  }
+
+  private void setSpawnInventory() {
+    this.player.getInventory().clear();
+    hotbarItemManager.setItems();
+  }
+
+  public void updateKit(KitType kitType) {
+    this.kit = Kit.buildKit(kitType, this);
   }
 
 }

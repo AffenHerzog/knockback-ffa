@@ -13,6 +13,7 @@ import de.affenherzog.knockbackffa.listener.KffaPlayerDeathListener;
 import de.affenherzog.knockbackffa.listener.KffaPlayerHitListener;
 import de.affenherzog.knockbackffa.listener.PlayerDamageListener;
 import de.affenherzog.knockbackffa.listener.PlayerDropItemListener;
+import de.affenherzog.knockbackffa.listener.PlayerInteractListener;
 import de.affenherzog.knockbackffa.listener.PlayerJoinListener;
 import de.affenherzog.knockbackffa.listener.PlayerMoveListener;
 import de.affenherzog.knockbackffa.listener.PlayerQuitListener;
@@ -28,6 +29,7 @@ import java.io.File;
 import java.util.HashMap;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -114,6 +116,7 @@ public final class Kffa extends JavaPlugin {
     pluginManager.registerEvents(new PlayerDropItemListener(), this);
     pluginManager.registerEvents(new DoubleJumpListener(), this);
     pluginManager.registerEvents(new EnderPearlListener(), this);
+    pluginManager.registerEvents(new PlayerInteractListener(), this);
   }
 
   @Override

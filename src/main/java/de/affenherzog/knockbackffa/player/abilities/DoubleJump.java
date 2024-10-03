@@ -2,10 +2,9 @@ package de.affenherzog.knockbackffa.player.abilities;
 
 import de.affenherzog.knockbackffa.Kffa;
 import de.affenherzog.knockbackffa.player.KffaPlayer;
-import org.bukkit.event.Listener;
 import org.bukkit.util.Vector;
 
-public class DoubleJump extends Ability implements Listener {
+public class DoubleJump extends ExternalCooldownAbility {
 
   public DoubleJump(KffaPlayer player, int cooldownTime) {
     super(player, cooldownTime);
