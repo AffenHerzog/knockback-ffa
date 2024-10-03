@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class MessageManager {
 
   private static MessageManager instance;
-  private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
+  public static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
   @Getter
   private FileConfiguration config;
