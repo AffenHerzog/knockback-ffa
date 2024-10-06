@@ -72,6 +72,7 @@ public class KffaPlayer {
   public void handlePlaying() {
     this.playerState = PlayerState.PLAYING;
     this.kit.setGameInventory();
+    this.player.getInventory().close();
   }
 
   private void setSpawnInventory() {
