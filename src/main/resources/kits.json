@@ -2,9 +2,9 @@
   "kits": [
     {
       "type": "DefaultKit",
-      "displayName": "<red>normal",
+      "displayName": "<red>Standard",
       "stick": {
-        "displayName": "<dark_red>Hauer"
+        "displayName": "<bold><dark_red>Schlagstock"
       },
       "upgrades": [
         {
@@ -16,14 +16,14 @@
       ],
       "specialItem": {
         "title": "Joooo",
-        "material": "STONE"
+        "material": "STICK"
       }
     },
     {
       "type": "EnderPearlKit",
-      "displayName": "<dark_purple>ep",
+      "displayName": "<dark_purple>Enderperle",
       "stick": {
-        "displayName": "<dark_purple>Uiii"
+        "displayName": "<bold><dark_purple>Pinke Rute"
       },
       "upgrades": [
         {
@@ -73,8 +73,8 @@
         }
       ],
       "specialItem": {
-        "title": "Joooo",
-        "material": "STONE"
+        "title": "<dark_purple>Kugel",
+        "material": "ENDER_PEARL"
       }
     }
   ]

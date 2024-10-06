@@ -4,5 +4,5 @@ error:
 
 gui:
   kit-selection:
-    title: <blue>Kits Auswählen
-    hotbar-item: <red>Kits Auswählen
+    title: <blue><bold>Kits Auswählen
+    hotbar-item: <red><bold>Kits Auswählen

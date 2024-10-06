@@ -19,8 +19,11 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class Kit {
 
+  private static final Map<KitType, TriFunction<KffaPlayer, KitData, KitUpgrade, Kit>> kitMap = new HashMap<>();
+
   protected final KffaPlayer kffaPlayer;
 
+  @Getter
   protected final KitData kitData;
 
   @Getter
@@ -31,8 +34,6 @@ public abstract class Kit {
   protected Ability kitAbility;
 
   protected final KnockbackStick knockbackStick;
-
-  private static final Map<KitType, TriFunction<KffaPlayer, KitData, KitUpgrade, Kit>> kitMap = new HashMap<>();
 
   static {
     kitMap.put(KitType.DEFAULT, DefaultKit::new);

@@ -13,11 +13,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class KitSelectionGui extends KffaGui {
 
-  private static final int ROWS = 5;
+  private static final int ROWS = 3;
 
   private static final Component title = MessageManager.getInstance()
       .getMiniMessage("gui.kit-selection.title");
@@ -48,14 +51,15 @@ public class KitSelectionGui extends KffaGui {
         kitItemStack = new ItemStack(Material.STICK);
       }
 
-      GuiItem guiItem = ItemBuilder.from(kitItemStack).name(kitData.getDisplayName()).asGuiItem();
-      guiItem.setAction(action -> this.kffaPlayer.updateKit(kitData.getType()));
+      GuiItem guiItem = buildGuiItem(kitData, kitItemStack);
+
+      guiItem.setAction(action -> setAction(kitData, action));
 
       itemQueue.add(guiItem);
     }
 
-    for (int i = 1; i < ROWS; i++) {
-      for (int j = 1; j < 7; j++) {
+    for (int i = 2; i < ROWS; i++) {
+      for (int j = 2; j < 9; j++) {
         final GuiItem item = itemQueue.poll();
         if (item == null) {
           return;
@@ -64,6 +68,32 @@ public class KitSelectionGui extends KffaGui {
         gui.setItem(i, j, item);
       }
     }
+  }
+
+  private void setAction(@NotNull KitData kitData, InventoryClickEvent event) {
+    if (this.kffaPlayer.getKit().getKitData().getType().equals(kitData.getType())) {
+      playSound(DENY_CLICK);
+      return;
+    }
+    this.kffaPlayer.updateKit(kitData.getType());
+    playSound(ALLOW_CLICK);
+    addContent();
+    this.gui.update();
+  }
+
+  private @NotNull GuiItem buildGuiItem(@NotNull KitData kitData, @NotNull ItemStack kitItemStack) {
+    if (this.kffaPlayer.getKit().getKitData().getType().equals(kitData.getType())) {
+      return ItemBuilder.from(kitItemStack)
+          .name(kitData.getDisplayName().append(Component.text()))
+          .glow(true)
+          .asGuiItem();
+    }
+
+    return ItemBuilder.from(kitItemStack)
+        .name(kitData.getDisplayName())
+        .disenchant(Enchantment.LUCK_OF_THE_SEA)
+        .glow(false)
+        .asGuiItem();
   }
 
   @Override
