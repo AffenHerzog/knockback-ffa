@@ -84,7 +84,9 @@ public class KitSelectionGui extends KffaGui {
   private @NotNull GuiItem buildGuiItem(@NotNull KitData kitData, @NotNull ItemStack kitItemStack) {
     if (this.kffaPlayer.getKit().getKitData().getType().equals(kitData.getType())) {
       return ItemBuilder.from(kitItemStack)
-          .name(kitData.getDisplayName().append(Component.text()))
+          .name(kitData.getDisplayName()
+              .append(
+                  MessageManager.getInstance().getMiniMessage("gui.general.currently-selected")))
           .glow(true)
           .asGuiItem();
     }

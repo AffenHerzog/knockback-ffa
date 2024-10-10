@@ -3,6 +3,8 @@ error:
 
 
 gui:
+  general:
+    currently-selected: <gray> <Ausgewählt>
   kit-selection:
     title: <blue><bold>Kits Auswählen
     hotbar-item: <red><bold>Kits Auswählen
