@@ -62,10 +62,14 @@ public class KffaPlayer {
   }
 
   public void handleDeath() {
+    DeathHandler.handleDeath(player);
+    handleRespawn();
+  }
+
+  public void handleRespawn() {
     this.playerState = PlayerState.SPAWN;
     this.kit.resetCooldowns();
     this.kit.getDoubleJump().cancelDisplayCooldown();
-    DeathHandler.handleDeath(player);
     setSpawnInventory();
   }
 

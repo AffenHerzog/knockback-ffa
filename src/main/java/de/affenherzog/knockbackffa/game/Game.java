@@ -2,6 +2,7 @@ package de.affenherzog.knockbackffa.game;
 
 import de.affenherzog.knockbackffa.Kffa;
 import de.affenherzog.knockbackffa.map.Map;
+import de.affenherzog.knockbackffa.player.KffaPlayer;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -33,6 +34,8 @@ public class Game {
     map.prepareWorld();
 
     this.spawnLocation = generateLocation();
+
+    preparePlayer();
     teleportPlayer();
   }
 
@@ -46,6 +49,10 @@ public class Game {
 
   private void teleportPlayer() {
     Kffa.getInstance().getPlayerHashMap().keySet().forEach(this::teleport);
+  }
+  
+  private void preparePlayer() {
+    Kffa.getInstance().getPlayerHashMap().values().forEach(KffaPlayer::handleRespawn);
   }
 
 }
