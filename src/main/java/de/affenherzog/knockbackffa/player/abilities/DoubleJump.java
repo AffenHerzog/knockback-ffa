@@ -56,6 +56,10 @@ public class DoubleJump extends ExternalCooldownAbility {
   }
 
   public void cancelDisplayCooldown() {
+    if (this.task == null) {
+      return;
+    }
+
     this.task.cancel();
     this.player.getPlayer().sendActionBar(Component.empty());
   }
